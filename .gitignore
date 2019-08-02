@@ -1,0 +1,7 @@
+wpa_supplicant.conf
+*.DS_Store
+.vscode/
+*.xcf
+charts/
+k8s-incub8-external-storage/
+

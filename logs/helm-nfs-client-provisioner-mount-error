@@ -1,0 +1,58 @@
+Name:           nfs-client-provisioner-arm-6745dbc957-66s6b
+Namespace:      nfs-client-provisioner
+Priority:       0
+Node:           k3s-gateway/192.168.0.87
+Start Time:     Thu, 01 Aug 2019 12:37:55 -0700
+Labels:         app=nfs-client-provisioner-arm
+                pod-template-hash=6745dbc957
+                release=nfs-client-provisioner-arm
+Annotations:    <none>
+Status:         Pending
+IP:             
+Controlled By:  ReplicaSet/nfs-client-provisioner-arm-6745dbc957
+Containers:
+  nfs-client-provisioner-arm:
+    Container ID:   
+    Image:          quay.io/external_storage/nfs-client-provisioner-arm:latest
+    Image ID:       
+    Port:           <none>
+    Host Port:      <none>
+    State:          Waiting
+      Reason:       ContainerCreating
+    Ready:          False
+    Restart Count:  0
+    Environment:
+      PROVISIONER_NAME:  cluster.local/nfs-client-provisioner-arm
+      NFS_SERVER:        odroid-01.local
+      NFS_PATH:          /media/ssd/nfs
+    Mounts:
+      /persistentvolumes from nfs-client-root (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from nfs-client-provisioner-arm-token-l4dgv (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             False 
+  ContainersReady   False 
+  PodScheduled      True 
+Volumes:
+  nfs-client-root:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  pvc-nfs-client-provisioner-arm
+    ReadOnly:   false
+  nfs-client-provisioner-arm-token-l4dgv:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  nfs-client-provisioner-arm-token-l4dgv
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type     Reason       Age   From                  Message
+  ----     ------       ----  ----                  -------
+  Normal   Scheduled    2m9s  default-scheduler     Successfully assigned nfs-client-provisioner/nfs-client-provisioner-arm-6745dbc957-66s6b to k3s-gateway
+  Warning  FailedMount  6s    kubelet, k3s-gateway  Unable to mount volumes for pod "nfs-client-provisioner-arm-6745dbc957-66s6b_nfs-client-provisioner(dbb11f62-b493-11e9-a8fd-b827eb3a3d40)": timeout expired waiting for volumes to attach or mount for pod "nfs-client-provisioner"/"nfs-client-provisioner-arm-6745dbc957-66s6b". list of unmounted volumes=[nfs-client-root]. list of unattached volumes=[nfs-client-root nfs-client-provisioner-arm-token-l4dgv]
+  Warning  FailedMount  4s    kubelet, k3s-gateway  MountVolume.SetUp failed for volume "pv-nfs-client-provisioner-arm" : mount failed: exit status 32
+Mounting command: systemd-run
+Mounting arguments: --description=Kubernetes transient mount for /var/lib/rancher/k3s/agent/kubelet/pods/dbb11f62-b493-11e9-a8fd-b827eb3a3d40/volumes/kubernetes.io~nfs/pv-nfs-client-provisioner-arm --scope -- mount -t nfs -o _netdev,auto,noatime,vers=4.1 odroid-01.local:/media/ssd/nfs /var/lib/rancher/k3s/agent/kubelet/pods/dbb11f62-b493-11e9-a8fd-b827eb3a3d40/volumes/kubernetes.io~nfs/pv-nfs-client-provisioner-arm
+Output: Running scope as unit: run-r03a3c0b7a4b14e518c1ffa57cc96f56a.scope

@@ -1,0 +1,14 @@
+# sudo touch /lib/systemd/system/raspberrypi-hostname.service
+# sudo ln -s /lib/systemd/system/raspberrypi-hostname.service /etc/systemd/system/multi-user.target.wants/raspberrypi-hostname.service
+[Unit]
+Description=Copy user (/etc/)hostname
+ConditionPathExists=/boot/hostname
+Before=dhcpcd.service
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/mv /boot/hostname /etc/hostname
+ExecStartPost=/bin/chmod 644 /etc/hostname
+ExecStartPost=/bin/hostname --file /etc/hostname
+[Install]
+WantedBy=multi-user.target
